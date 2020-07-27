@@ -68,6 +68,6 @@ test-bin:
 
 cnf-tests-local:
 	@echo "Making cnf-tests local"
-	$(IMAGE_BUILD_CMD) build --no-cache -f cnf-tests/Dockerfile -t cnf-tests-local .
+	$(IMAGE_BUILD_CMD) build --no-cache -f cnf-tests/Dockerfile.openshift -t cnf-tests-local .
 	$(IMAGE_BUILD_CMD) build --no-cache -f tools/s2i-dpdk/Dockerfile -t dpdk tools/s2i-dpdk/
 
