@@ -2,7 +2,7 @@
 FROM openshift/origin-release:golang-1.13 as builder
 
 # Add everything
-ENV PKG_NAME=github.com/openshift-kni/cnf-features-deploy
+ENV PKG_NAME=github.com/mbpavan/openshift-kni/cnf-features-deploy
 ENV PKG_PATH=/go/src/$PKG_NAME
 RUN mkdir -p $PKG_PATH
 
@@ -18,7 +18,7 @@ FROM quay.io/openshift/origin-oc-rpms:4.5 as oc
 FROM openshift/origin-release:golang-1.13 as builder-stresser
 
 # Add everything
-ENV PKG_NAME=github.com/openshift-kni/cnf-features-deploy
+ENV PKG_NAME=github.com/mbpavan/openshift-kni/cnf-features-deploy
 ENV PKG_PATH=/go/src/$PKG_NAME
 ENV STRESSER_PATH=$PKG_PATH/cnf-tests/testbinaries/stresser
 
@@ -33,7 +33,7 @@ RUN go build -mod=vendor -o /stresser
 FROM openshift/origin-release:golang-1.13 as builder-sctptester
 
 # Add everything
-ENV PKG_NAME=github.com/openshift-kni/cnf-features-deploy
+ENV PKG_NAME=github.com/mbpavan/openshift-kni/cnf-features-deploy
 ENV PKG_PATH=/go/src/$PKG_NAME
 ENV TESTER_PATH=$PKG_PATH/cnf-tests/testbinaries/sctptester
 
