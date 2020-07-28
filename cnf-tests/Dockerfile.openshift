@@ -44,7 +44,7 @@ WORKDIR $TESTER_PATH
 
 RUN go build -mod=vendor -o /sctptest
 
-FROM openshift/origin-base
+FROM centos:8
 
 RUN yum install -y lksctp-tools iproute libhugetlbfs-utils libhugetlbfs tmux ethtool iputils
 
@@ -54,16 +54,16 @@ COPY --from=builder-stresser /stresser /usr/bin/stresser
 COPY --from=builder-sctptester /sctptest /usr/bin/sctptest
 
 COPY --from=oc /go/src/github.com/openshift/oc/oc /usr/bin/oc
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/bin/cnftests /usr/bin/cnftests
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/bin/configsuite /usr/bin/configsuite
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/bin/validationsuite /usr/bin/validationsuite
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/test-run.sh /usr/bin/test-run.sh
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/bin/mirror /usr/bin/mirror
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/images.json /usr/local/etc/cnf
-COPY --from=builder /go/src/github.com/openshift-kni/cnf-features-deploy/cnf-tests/bin/cnftests-sha.txt /usr/local/etc/cnf
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/bin/cnftests /usr/bin/cnftests
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/bin/configsuite /usr/bin/configsuite
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/bin/validationsuite /usr/bin/validationsuite
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/test-run.sh /usr/bin/test-run.sh
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/bin/mirror /usr/bin/mirror
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/images.json /usr/local/etc/cnf
+COPY --from=builder /go/src/github.com/mbpavan/openshift-kni/cnf-features-deploy/cnf-tests/bin/cnftests-sha.txt /usr/local/etc/cnf
 
 ENV SUITES_PATH=/usr/bin/
 
 CMD ["/usr/bin/test-run.sh"]
 LABEL io.openshift.tags="openshift" \
-      maintainer="Federico Paolinelli <fpaoline@redhat.com>"
+      maintainer="Pavan Bheeman <pbheeman@redhat.com>"
