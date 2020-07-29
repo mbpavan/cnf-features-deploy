@@ -19,7 +19,7 @@ type EnabledNodes struct {
 }
 
 var (
-        supportedDrivers = []string{"mlx5_core", "i40e", "ixgbe", "vfio_pci"}
+        supportedDrivers = []string{"mlx5_core", "i40e", "ixgbe"}
         supportedDevices = []string{"1583", "158b", "10fb", "1015", "1017", "1515", "1521", "1528"}
 )
 
