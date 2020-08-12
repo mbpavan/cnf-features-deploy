@@ -1220,7 +1220,7 @@ func pingPod(ip string, nodeSelector string, sriovNetworkAttachment string) {
 		pod.RedefineWithRestartPolicy(
 			pod.RedefineWithCommand(
 				pod.DefineWithNetworks([]string{sriovNetworkAttachment}),
-				[]string{"sh", "-c", "ping -6 -c 3 " + ip}, []string{},
+				[]string{"sh", "-c", "ping -6 -c 15 " + ip}, []string{},
 			),
 			k8sv1.RestartPolicyNever,
 		),
